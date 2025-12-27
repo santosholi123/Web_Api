@@ -12,7 +12,7 @@ export default function DashboardPage() {
       title: "Homogeneous Flooring",
       category: "homogeneous",
       image:
-        "https://images.pexels.com/photos/7534211/pexels-photo-7534211.jpeg",
+        "//https://images.pexels.com/photos/7534211/pexels-photo-7534211.jpeg",
     },
     {
       title: "Heterogeneous Flooring",

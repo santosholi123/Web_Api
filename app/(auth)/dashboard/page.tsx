@@ -18,7 +18,7 @@ export default function DashboardPage() {
       title: "Heterogeneous Flooring",
       category: "heterogeneous",
       image:
-        "//https://images.pexels.com/photos/4483773/pexels-photo-4483773.jpeg",
+        "https://images.pexels.com/photos/4483773/pexels-photo-4483773.jpeg",
     },
     {
       title: "Sports Flooring",

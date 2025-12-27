@@ -21,7 +21,7 @@ export default function DashboardPage() {
         "https://images.pexels.com/photos/4483773/pexels-photo-4483773.jpeg",
     },
     {
-      title: "Sports Flooring",
+      title: "//Sports Flooring",
       category: "sports",
       image: "sports",
     },

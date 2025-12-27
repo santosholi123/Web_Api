@@ -23,7 +23,7 @@ export default function DashboardPage() {
     {
       title: "Sports Flooring",
       category: "sports",
-      image: "//sports",
+      image: "sports",
     },
   ];
 

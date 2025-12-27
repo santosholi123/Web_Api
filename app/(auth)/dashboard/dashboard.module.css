@@ -1,0 +1,189 @@
+/* =========================
+   TOP NAVBAR
+========================= */
+.topNav {
+  height: 64px;
+  width: 100%;
+  background-color: #0ea5b7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #ffffff;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navCenter {
+  display: flex;
+  gap: 24px;
+}
+
+.navCenter a {
+  cursor: pointer;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.navCenter a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.search {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  width: 180px;
+}
+
+/* =========================
+   MAIN CONTAINER (FIXED)
+========================= */
+.container {
+  display: flex;
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #022c3a, #0f4c5c);
+}
+
+/* =========================
+   SIDEBAR (FIXED)
+========================= */
+.sidebar {
+  width: 220px;
+  background-color: #0b2f3a;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: white;
+}
+
+.sidebar button {
+  padding: 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #e5e7eb;
+}
+
+.sidebar button:hover {
+  background-color: #124b5c;
+}
+
+.sidebar .active {
+  background-color: #0ea5b7;
+  color: white;
+}
+
+.logout {
+  margin-top: auto;
+  color: #f87171;
+  font-weight: bold;
+}
+
+/* =========================
+   MAIN CONTENT (FIXED)
+========================= */
+.main {
+  flex: 1;
+  padding: 32px;
+  color: white;
+}
+
+.main h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: white;
+}
+
+/* =========================
+   TABS
+========================= */
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tabs button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #0ea5b7;
+  background-color: transparent;
+  color: #0ea5b7;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tabs button:hover {
+  background-color: rgba(14, 165, 183, 0.15);
+}
+
+.activeTab {
+  background-color: #0ea5b7;
+  color: white;
+}
+
+/* =========================
+   CARD GRID
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.image {
+  height: 160px;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sportsCourt {
+  font-size: 48px;
+}
+
+.card p {
+  padding: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #111827;
+}

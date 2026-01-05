@@ -6,6 +6,7 @@ import styles from "./dashboard.module.css";
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const cards = [
     {
@@ -40,6 +41,13 @@ export default function DashboardPage() {
       {/* Top Nav */}
       <nav className={styles.topNav}>
         <div className={styles.logo}>FloorEase</div>
+        <button
+          className={styles.menuButton}
+          onClick={() => setShowSidebar(!showSidebar)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
 
         <div className={styles.navCenter}>
           <a className={styles.active}>Dashboard</a>
@@ -55,9 +63,16 @@ export default function DashboardPage() {
         />
       </nav>
 
+      {showSidebar && (
+        <div
+          className={styles.backdrop}
+          onClick={() => setShowSidebar(false)}
+        />
+      )}
+
       <div className={styles.container}>
         {/* Sidebar */}
-        <aside className={styles.sidebar}>
+        <aside className={`${styles.sidebar} ${showSidebar ? styles.open : ""}`}>
           <button className={styles.active}>Dashboard</button>
           <button>Homogeneous</button>
           <button>Heterogeneous</button>

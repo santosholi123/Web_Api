@@ -46,6 +46,15 @@
   width: 180px;
 }
 
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
 /* =========================
    MAIN CONTAINER (FIXED)
 ========================= */
@@ -103,6 +112,17 @@
   color: white;
 }
 
+.open {
+  left: 0;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 900;
+}
+
 .main h1 {
   margin-bottom: 20px;
   font-size: 28px;
@@ -144,6 +164,70 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .topNav {
+    padding: 0 12px;
+  }
+
+  .navCenter {
+    display: none;
+  }
+
+  .search {
+    width: 120px;
+  }
+
+  .menuButton {
+    display: block;
+    margin-left: 12px;
+  }
+
+  .container {
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 64px;
+    left: -260px;
+    height: calc(100% - 64px);
+    z-index: 1000;
+    width: 220px;
+    transition: left 0.25s ease;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .grid {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .search {
+    width: 90px;
+    padding: 6px 8px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .main h1 {
+    font-size: 20px;
+  }
 }
 
 /* =========================

@@ -1,12 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./dashboard.module.css";
 
+
 export default function DashboardPage() {
+  const router = useRouter();
+  const [isChecking, setIsChecking] = useState(true);
+  const [hasToken, setHasToken] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.replace("/login");
+      setHasToken(false);
+      setIsChecking(false);
+      return;
+    }
+
+    setHasToken(true);
+    setIsChecking(false);
+  }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    document.cookie = "token=; Max-Age=0; path=/";
+    router.replace("/login");
+  };
 
   const cards = [
     {
@@ -36,8 +61,16 @@ export default function DashboardPage() {
     return matchesTab && matchesSearch;
   });
 
+  if (isChecking) {
+    return <div>Loading...</div>;
+  }
+
+  if (!hasToken) {
+    return null;
+  }
+
   return (
-    <>
+    <div className={styles.page}>
       {/* Top Nav */}
       <nav className={styles.topNav}>
         <div className={styles.logo}>FloorEase</div>
@@ -50,14 +83,14 @@ export default function DashboardPage() {
         </button>
 
         <div className={styles.navCenter}>
-          <a className={styles.active}>Dashboard</a>
-          <a>Products</a>
-          <a>Booking</a>
-          <a>Profile</a>
+          <a className={`${styles.navLink} ${styles.navLinkActive}`}>Dashboard</a>
+          <a className={styles.navLink}>Products</a>
+          <a className={styles.navLink}>Booking</a>
+          <a className={styles.navLink}>Profile</a>
         </div>
 
         <input
-          className={styles.search}
+          className={styles.searchBox}
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -73,27 +106,32 @@ export default function DashboardPage() {
       <div className={styles.container}>
         {/* Sidebar */}
         <aside className={`${styles.sidebar} ${showSidebar ? styles.open : ""}`}>
-          <button className={styles.active}>Dashboard</button>
-          <button>Homogeneous</button>
-          <button>Heterogeneous</button>
-          <button>Sports</button>
-          <button className={styles.logout}>Logout</button>
+          <button className={`${styles.sidebarButton} ${styles.sidebarActive}`}>Dashboard</button>
+          <button className={styles.sidebarButton}>Homogeneous</button>
+          <button className={styles.sidebarButton}>Heterogeneous</button>
+          <button className={styles.sidebarButton}>Sports</button>
+          <button
+            className={`${styles.sidebarButton} ${styles.logout}`}
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </aside>
 
         {/* Main */}
         <main className={styles.main}>
-          <h1>FloorEase Dashboard</h1>
+          <h1 className={styles.header}>FloorEase Dashboard</h1>
 
           {/* Tabs */}
           <div className={styles.tabs}>
-            {["all", "homogeneous", "heterogeneous", "sports"].map(
+            {['all', 'homogeneous', 'heterogeneous', 'sports'].map(
               (tab) => (
                 <button
                   key={tab}
                   className={
                     activeTab === tab
-                      ? styles.activeTab
-                      : ""
+                      ? `${styles.tabButton} ${styles.activeTab}`
+                      : styles.tabButton
                   }
                   onClick={() => setActiveTab(tab)}
                 >
@@ -104,22 +142,22 @@ export default function DashboardPage() {
           </div>
 
           {/* Cards */}
-          <div className={styles.grid}>
+          <div className={styles.cardsGrid}>
             {filteredCards.map((card) => (
               <div key={card.title} className={styles.card}>
                 <div className={styles.image}>
                   {card.image === "sports" ? (
                     <div className={styles.sportsCourt}>🏀</div>
                   ) : (
-                    <img src={card.image} alt={card.title} />
+                    <img className={styles.heroImage} src={card.image} alt={card.title} />
                   )}
                 </div>
-                <p>{card.title}</p>
+                <p className={styles.cardTitle}>{card.title}</p>
               </div>
             ))}
           </div>
         </main>
       </div>
-    </>
+    </div>
   );
 }

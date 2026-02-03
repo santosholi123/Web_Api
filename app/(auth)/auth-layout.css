@@ -1,0 +1,31 @@
+/* ============================================
+   AUTH LAYOUT WRAPPER - Login/Register Pages
+   This applies ONLY to routes under (auth)
+   Prevents style leakage to other routes
+   ============================================ */
+
+.authLayoutWrapper {
+  /* Layout & Sizing */
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Styling */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #1a365d 100%);
+  
+  /* Spacing */
+  padding: 20px;
+  margin: 0;
+  
+  /* Overflow containment - prevents children from breaking layout */
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  /* Position stacking */
+  position: relative;
+  z-index: 1;
+}
+

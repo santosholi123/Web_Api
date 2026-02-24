@@ -690,4 +690,3 @@ export default function BookingsPage() {
     </div>
   );
 }
-//

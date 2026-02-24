@@ -8,6 +8,9 @@ export const API = {
   AUTH: {
     REGISTER: "/api/auth/register",
     LOGIN: "/api/auth/login",
+    FORGOT_PASSWORD: "/api/auth/forgot-password",
+    VERIFY_RESET_OTP: "/api/auth/verify-reset-otp",
+    RESET_PASSWORD: "/api/auth/reset-password",
   },
 } as const;
 
@@ -17,10 +20,14 @@ export const ENDPOINTS = {
     REGISTER: "/auth/register",
     LOGOUT: "/auth/logout",
     REFRESH: "/auth/refresh",
+    FORGOT_PASSWORD: "/auth/forgot-password",
+    VERIFY_RESET_OTP: "/auth/verify-reset-otp",
+    RESET_PASSWORD: "/auth/reset-password",
   },
   USER: {
-    PROFILE: "/user/profile",
-    UPDATE: "/user/update",
+    PROFILE: "/api/auth/me",
+    UPDATE: "/api/auth/me",
+    AVATAR: "/api/auth/avatar",
   },
   PRODUCTS: {
     LIST: "/products",

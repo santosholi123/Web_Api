@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginUser } from "@/lib/actions/auth-actions";
+import { api } from "@/lib/api/axios";
 import styles from "../login/login.module.css";
 
 export function LoginForm() {
@@ -26,6 +27,31 @@ export function LoginForm() {
     setLoading(true);
 
     try {
+      const isAdminLogin =
+        email === "santosholi@gmail.com" && password === "admin@123";
+
+      if (isAdminLogin) {
+        const response = await api.post("/api/admin/login", { email, password });
+        const data = response?.data;
+
+        if (data?.success === false) {
+          setError(data?.message || "Login failed");
+          return;
+        }
+
+        const token = data?.data?.token ?? data?.token;
+
+        if (token) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", "admin");
+          localStorage.setItem("email", email);
+          document.cookie = `token=${token}; path=/`;
+        }
+
+        router.push("/admin");
+        return;
+      }
+
       const response = await loginUser({ email, password });
 
       if (response?.success === false) {
